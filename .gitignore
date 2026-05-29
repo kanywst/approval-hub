@@ -1,0 +1,4 @@
+bin/
+*.pid
+config.json
+learned-rules.jsonl
