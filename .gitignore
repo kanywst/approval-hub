@@ -1,4 +1,13 @@
+.DS_Store
 bin/
+dist/
+*.log
 *.pid
+
+# Runtime data
 config.json
 learned-rules.jsonl
+
+# Local env
+.env
+.env.local
