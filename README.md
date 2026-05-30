@@ -1,5 +1,7 @@
 # approval-hub
 
+<img src="assets/logo.svg" alt="approval-hub" width="160" align="right">
+
 > One TUI for every Claude Code permission prompt.
 
 ![CI](https://github.com/kanywst/approval-hub/actions/workflows/ci.yml/badge.svg)

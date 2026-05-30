@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" fill="none">
+  <title>approval-hub</title>
+
+  <!-- icon scaled to half size, padded -->
+  <g transform="translate(32 32) scale(0.5)"
+     stroke="#50fa7b" stroke-width="24"
+     stroke-linecap="round" stroke-linejoin="round">
+    <rect x="56" y="56" width="400" height="400" rx="56" stroke-width="28"/>
+    <line x1="256" y1="86" x2="256" y2="186"/>
+    <polyline points="228,158 256,186 284,158"/>
+    <line x1="256" y1="426" x2="256" y2="326"/>
+    <polyline points="228,354 256,326 284,354"/>
+    <line x1="86" y1="256" x2="186" y2="256"/>
+    <polyline points="158,228 186,256 158,284"/>
+    <line x1="426" y1="256" x2="326" y2="256"/>
+    <polyline points="354,228 326,256 354,284"/>
+    <rect x="184" y="184" width="144" height="144" rx="20" stroke-width="22"/>
+    <polyline points="206,256 234,284 262,236" stroke-width="18"/>
+    <line x1="276" y1="270" x2="308" y2="302" stroke-width="18"/>
+    <line x1="308" y1="270" x2="276" y2="302" stroke-width="18"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="320" y="200"
+        font-family="JetBrains Mono, Fira Code, Menlo, Consolas, monospace"
+        font-size="150" font-weight="600" fill="#50fa7b"
+        letter-spacing="-2">approval-hub</text>
+</svg>
