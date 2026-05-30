@@ -13,40 +13,16 @@
 When you run multiple Claude Code sessions in parallel, every
 PreToolUse permission prompt fires in a different terminal.
 `approval-hub` aggregates them into a single TUI so you can resolve
-every request from one place — and the learned rules apply to future
-requests across all sessions.
+every request from one place. Learned rules apply to future requests
+across every session on the same machine.
 
-```text
-+- approval-hub ---------------------------------------------+
-| pending (2):                                               |
-|   > [a1b2c3d4] Bash: npm install               10:01:23    |
-|     [e5f6g7h8] Edit: .env.local                10:01:25    |
-|                                                            |
-+------------------------------------------------------------+
-| session_id: a1b2c3d4...                                    |
-| tool:       Bash                                           |
-| command:    npm install                                    |
-| cwd:        ~/proj/foo                                     |
-| matcher:    Bash(npm:*)                                    |
-|                                                            |
-| y once  n deny  a persist  d deny-persist  t ttl  ? help q |
-+------------------------------------------------------------+
-```
+<img src="assets/demo.gif" alt="approval-hub demo" width="900">
 
-## Highlights
-
-- **One TUI for every session.** Each session's PreToolUse hook posts
-  to a local broker; the broker pushes pending requests over SSE to a
-  single Bubble Tea TUI.
-- **Matcher learning.** `a` / `d` records a permission rule
-  (`Bash(npm test:*)`, `Edit(.env)`) so subsequent matching requests
-  resolve in about 30 ms without prompting.
-- **TTL rules.** `t` grants a one-hour pass instead of a forever rule.
-- **Fails safe.** Kill the broker and Claude Code's hook receives a
-  connection error; Claude Code falls back to its built-in prompt.
-  Nothing breaks.
-- **Local-only.** `127.0.0.1` listener, bearer token stored in `0600`
-  files, no network exposure.
+Two parallel Claude Code sessions queue PreToolUse requests; one TUI
+resolves them. `a` persists a learned `Bash(npm:*)` allow rule, `d`
+persists an `Edit(.env.local)` deny rule, and the next matching request
+from any session resolves from the store without prompting. `t` grants
+a TTL rule instead of a forever one.
 
 ## Install
 
@@ -135,8 +111,11 @@ the broker HTTP API.
 
 `approval-hub` listens on `127.0.0.1` only and authenticates every
 request with a `crypto/rand` 32-byte bearer token stored in `0600`
-files. See [SECURITY.md](SECURITY.md) for the threat model.
+files. If the broker is not running, Claude Code's hook gets a
+connection error and falls back to its built-in prompt, so no session
+is blocked by a daemon outage. See [SECURITY.md](SECURITY.md) for the
+threat model.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
